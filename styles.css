@@ -1,0 +1,44 @@
+.grid{
+    --gap: 1rem;
+    --columns: 2;
+    background-color: azure;
+    max-width: 60rem;
+    margin: 0 auto;
+    display: column;
+    columns: var(--columns);
+    gap: var(--gap);
+}
+
+.grid > *{
+    break-inside: avoid;
+    margin-bottom: var(--gap);
+}
+
+@supports (grid-template-rows: masonry){
+    /* Si el navegador soporta: masonry: */
+    .grid{
+        display: grid;
+        grid-template-columns: repeat(var(--columns), 1fr);
+        grid-template-rows: masonry;
+        grid-auto-flow: dense;
+        /* align-tracks: stretch; */
+    }
+
+    .grid > *{
+        margin-bottom: 0rem;
+    }
+}
+
+.content{
+    border: 1px solid red;
+}
+
+.featured{
+    /* grid-column: span 2; */
+}
+
+*,
+*::before,
+*::after{
+    box-sizing: border-box;
+}
